@@ -21,6 +21,13 @@ namespace FUEN31API
                  builder.Configuration.GetConnectionString("NorthwindConnection")
          ));
 
+            //CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -36,12 +43,16 @@ namespace FUEN31API
 
             app.UseHttpsRedirection();
 
+            app.UseCors("AllowAll");
+
             app.UseAuthorization();
 
 
             app.MapControllers();
 
             app.Run();
+
+           
         }
     }
 }
