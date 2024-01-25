@@ -27,9 +27,9 @@ namespace FUEN31API.Controllers
             return await _context.Shippers.ToListAsync();
         }
 
-        // GET: api/Shippers/keyword/{}
+        // GET: api/Shippers/abc/{}
         [HttpGet]
-        [Route("keyword/{keyword}")]
+        [Route("abc/{keyword}")]     
         public async Task<ActionResult<IEnumerable<Shipper>>> GetShippersByKeyword(string keyword)
         {
             return await _context.Shippers.Where(s=>s.CompanyName.Contains(keyword)).ToListAsync();
